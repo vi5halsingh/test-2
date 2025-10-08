@@ -1,0 +1,16 @@
+.env 
+node_modules
+package-lock.json
+package.json
+README.md
+index.js
+server.js
+public
+  assets
+    css
+      style.css
+    js
+      script.js
+  index.html
+  favicon.ico
+  robots.txt
