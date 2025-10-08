@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { login } from '../services/api';
+import { useState, useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
@@ -7,12 +7,11 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  const { login: doLogin } = useContext(AuthContext);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await login(email, password);
-      console.log(response.data);
-      // Handle successful login, e.g., store token and redirect
+      await doLogin(email, password);
     } catch (err) {
       setError('Invalid credentials');
     }

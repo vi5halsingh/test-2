@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { register } from '../services/api';
+import { useState, useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -7,12 +7,11 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  const { register: doRegister } = useContext(AuthContext);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await register(username, email, password);
-      console.log(response.data);
-      // Handle successful registration, e.g., redirect to login
+      await doRegister(username, email, password);
     } catch (err) {
       setError('Failed to register');
     }
