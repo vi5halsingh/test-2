@@ -14,40 +14,28 @@ function AppInner() {
   const { user, logout } = React.useContext(AuthContext);
   const navigate = useNavigate();
   return (
-    <div className="bg-slate-900 text-white min-h-screen">
-      <header className="bg-gradient-to-r from-blue-500 to-purple-600 shadow-lg">
-        <div className="container mx-auto px-6 py-4">
-          <nav className="flex justify-between items-center">
-            <Link to="/" className="text-3xl font-bold tracking-tight text-white">
-              News App
-            </Link>
-            <div className="flex items-center space-x-4">
-              {user ? (
-                <>
-                  {user.role === 'admin' && (
-                    <Link to="/create-news" className="text-white font-semibold">
-                      Admin
-                    </Link>
-                  )}
-                  <button onClick={() => { logout(); navigate('/login'); }} className="text-white">
-                    Logout
-                  </button>
-                </>
-              ) : (
-                <>
-                  <Link to="/login" className="text-white hover:text-gray-200 font-semibold transition duration-300">
-                    Login
-                  </Link>
-                  <Link to="/register" className="bg-gradient-to-r from-pink-500 to-orange-500 hover:from-pink-600 hover:to-orange-600 text-white font-bold py-2 px-6 rounded-full shadow-lg transform hover:scale-105 transition duration-300">
-                    Register
-                  </Link>
-                </>
-              )}
-            </div>
-          </nav>
+    <div>
+      <header className="header">
+        <div className="container header-inner">
+          <Link to="/" className="brand">News App</Link>
+          <div className="nav-links">
+            {user ? (
+              <>
+                {user.role === 'admin' && (
+                  <Link to="/create-news" className="nav-link">Admin</Link>
+                )}
+                <button onClick={() => { logout(); navigate('/login'); }} className="nav-link">Logout</button>
+              </>
+            ) : (
+              <>
+                <Link to="/login" className="nav-link">Login</Link>
+                <Link to="/register" className="btn btn-primary">Register</Link>
+              </>
+            )}
+          </div>
         </div>
       </header>
-      <main className="container mx-auto p-6 mt-10">
+      <main className="main container">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/news" element={<NewsList />} />

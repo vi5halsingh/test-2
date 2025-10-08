@@ -18,61 +18,25 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center">
-      <div className="w-full max-w-md bg-slate-800 rounded-xl shadow-lg p-8">
-        <h2 className="text-4xl font-bold text-center text-white mb-8">
-          Login
-        </h2>
+    <div className="auth-wrap">
+      <div className="auth-card">
+        <h2 style={{textAlign:'center',marginBottom:16}}>Login</h2>
         {error && (
-          <p className="bg-red-500 text-white text-center p-3 rounded-md mb-6">
-            {error}
-          </p>
+          <p style={{background:'#dc2626',color:'#fff',padding:10,borderRadius:8,marginBottom:12,textAlign:'center'}}>{error}</p>
         )}
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-300 mb-2"
-            >
-              Email Address
-            </label>
-            <input
-              id="email"
-              type="email"
-              className="w-full p-3 bg-slate-700 border border-slate-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@example.com"
-            />
+        <form onSubmit={handleSubmit}>
+          <div className="form-row">
+            <label className="form-label">Email Address</label>
+            <input className="form-input" id="email" type="email" value={email} onChange={(e)=>setEmail(e.target.value)} placeholder="you@example.com" />
           </div>
-          <div>
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-gray-300 mb-2"
-            >
-              Password
-            </label>
-            <input
-              id="password"
-              type="password"
-              className="w-full p-3 bg-slate-700 border border-slate-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-            />
+          <div className="form-row">
+            <label className="form-label">Password</label>
+            <input className="form-input" id="password" type="password" value={password} onChange={(e)=>setPassword(e.target.value)} placeholder="password" />
           </div>
-          <button
-            type="submit"
-            className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-md shadow-lg transform hover:scale-105 transition duration-300"
-          >
-            Login
-          </button>
+          <button type="submit" className="btn btn-primary" style={{width:'100%'}}>Login</button>
         </form>
-        <p className="text-center text-gray-400 mt-6">
-          Don't have an account?{' '}
-          <Link to="/register" className="text-blue-400 hover:text-blue-300 font-medium">
-            Sign up
-          </Link>
+        <p style={{textAlign:'center',marginTop:12}}>
+          Don't have an account? <Link to="/register" className="nav-link">Sign up</Link>
         </p>
       </div>
     </div>
