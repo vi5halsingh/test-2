@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { login } from '../services/api';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -18,32 +19,63 @@ const Login = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto">
-      <h2 className="text-2xl font-bold mb-4">Login</h2>
-      {error && <p className="text-red-500">{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label className="block mb-1">Email</label>
-          <input
-            type="email"
-            className="w-full p-2 border rounded"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block mb-1">Password</label>
-          <input
-            type="password"
-            className="w-full p-2 border rounded"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded">
+    <div className="flex justify-center items-center">
+      <div className="w-full max-w-md bg-slate-800 rounded-xl shadow-lg p-8">
+        <h2 className="text-4xl font-bold text-center text-white mb-8">
           Login
-        </button>
-      </form>
+        </h2>
+        {error && (
+          <p className="bg-red-500 text-white text-center p-3 rounded-md mb-6">
+            {error}
+          </p>
+        )}
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-300 mb-2"
+            >
+              Email Address
+            </label>
+            <input
+              id="email"
+              type="email"
+              className="w-full p-3 bg-slate-700 border border-slate-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@example.com"
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-300 mb-2"
+            >
+              Password
+            </label>
+            <input
+              id="password"
+              type="password"
+              className="w-full p-3 bg-slate-700 border border-slate-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••"
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-4 rounded-md shadow-lg transform hover:scale-105 transition duration-300"
+          >
+            Login
+          </button>
+        </form>
+        <p className="text-center text-gray-400 mt-6">
+          Don't have an account?{' '}
+          <Link to="/register" className="text-blue-400 hover:text-blue-300 font-medium">
+            Sign up
+          </Link>
+        </p>
+      </div>
     </div>
   );
 };
